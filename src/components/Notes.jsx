@@ -98,12 +98,14 @@ function showAlert(message) {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Write notes here"
         />
+        
       {/* Add & Delete Buttons Functional */}
       <div style={styles.buttonContainer}>
         <button style={styles.button} onClick={editIndex === null ? addNote : updateNote}>{editIndex !== null ?"Update":"Add"}</button>
         <button style={styles.button} onClick={deleteNotes}>Clear All</button>
       </div>
       </div>
+
       {/*  Display Notes  */}
       <div style={styles.noteContainer}>
         {notes.map((note, index) => (
@@ -140,6 +142,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     margin: '10px',
+
   },
   buttonContainer: {
     display: 'flex',
@@ -185,4 +188,6 @@ border: '1px solid black',
 padding: '1px',
 backgroundColor: 'white',
   }
+
+  
 }; 
