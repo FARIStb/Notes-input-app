@@ -1,37 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Notes from './components/Notes'
-import Login from './components/Login'
-import { Nav } from 'react-bootstrap'
-import NavBar from './components/NavBar'
-import {Routes,Route, Link } from 'react-router-dom'
-import Home from './components/Home'
-import My1page from './components/My1page'
-import My2page from './components/My2page'
+import { useEffect, useState } from 'react';
+import TsfNavBar from './components/TsfNavBar';
+import Notes2 from './components/Notes2';
 
 
 function App() {
+  const [dark, setDark] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  // dark mode function
+  const toggleDarkMode = () => {
+    setDark(prevDark => !prevDark);
+    document.body.style.backgroundColor = dark ? "white" : "black";
+    document.body.style.color = dark ? "black" : "green";
+  };
 
   return (
-      <div className="a">
-        <NavBar/>
-          {/* <nav>
-            <Link to="/">Home</Link> |
-            <Link to="my1p">My1page</Link>|
-            <Link to="my2p">My2page</Link>
-          </nav> */}
-          <Routes >
-            <Route path="/" element={<Home/>}/>
-            <Route path="/My1p" element={<My1page/>}/>
-            <Route path="/My2p" element={<My2page/>} />  
-          </Routes>         
-        <Notes/>
-        <Login/> 
-      </div>
-  
-  )
+    <div className={dark ? "dark-mode" : "light-mode"}>
+      <TsfNavBar dark={dark} toggleDarkMode={toggleDarkMode} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      
+      
+      <Notes2 searchTerm={searchTerm}/>
+    </div>
+  );
 }
 
-export default App
+export default App;
